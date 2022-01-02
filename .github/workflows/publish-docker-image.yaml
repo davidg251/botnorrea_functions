@@ -1,0 +1,20 @@
+# Identify the 
+
+name: Publish Docker image
+
+on:
+  push:
+    branches:
+      - feature-*
+      - feature/*
+
+jobs:
+  check_changes:
+    name: List the paths where change were done
+    runs-on: ubuntu-latest
+    steps:
+      
+      - name: Check out the repo
+        uses: actions/checkout@v2
+      
+      - name: 
