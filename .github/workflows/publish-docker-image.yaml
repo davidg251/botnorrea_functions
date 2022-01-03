@@ -18,4 +18,7 @@ jobs:
         uses: actions/checkout@v2
 
       - name: List changed folders
-        run : python3 scripts/list_changed_folders.py
+        run : ls -alh
+
+      - name: List changed folders
+        run : python3 ./scripts/list_changed_folders.py
