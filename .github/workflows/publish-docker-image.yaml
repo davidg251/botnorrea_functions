@@ -16,5 +16,6 @@ jobs:
       
       - name: Check out the repo
         uses: actions/checkout@v2
-      
-      - name: 
+
+      - name: List changed folders
+        run : python3 scripts/list_changed_folders.py
