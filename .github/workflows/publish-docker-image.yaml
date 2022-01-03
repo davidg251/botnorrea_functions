@@ -21,7 +21,10 @@ jobs:
         run: python3 --version
 
       - name: List changed folders
-        run : git diff-tree --no-commit-id --name-only -r $GITHUB_SHA
+        run : git diff-tree --no-commit-id --name-only -r ${GITHUB_SHA}
+
+      - name: List changed folders
+        run : echo "git diff-tree --no-commit-id --name-only -r ${GITHUB_SHA}"
 
       - name: List changed folders
         run : python3 .github/scripts/list_changed_folders.py
