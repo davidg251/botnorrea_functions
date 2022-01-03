@@ -16,6 +16,8 @@ jobs:
       
       - name: Check out the repo
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 2
       
       - name: Check out the repo
         run: python3 --version
