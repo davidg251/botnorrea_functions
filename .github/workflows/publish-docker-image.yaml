@@ -16,9 +16,12 @@ jobs:
       
       - name: Check out the repo
         uses: actions/checkout@v2
+      
+      - name: Check out the repo
+        run: python3 --version
 
       - name: List changed folders
-        run : ls -alh
+        run : git diff-tree --no-commit-id --name-only -r $GITHUB_SHA
 
       - name: List changed folders
         run : python3 .github/scripts/list_changed_folders.py
