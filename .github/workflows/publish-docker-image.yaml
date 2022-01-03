@@ -21,4 +21,4 @@ jobs:
         run : ls -alh
 
       - name: List changed folders
-        run : python3 ./scripts/list_changed_folders.py
+        run : python3 .github/scripts/list_changed_folders.py
