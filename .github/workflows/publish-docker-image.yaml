@@ -22,7 +22,7 @@ jobs:
       - name: List changed folders
         id: list
         #run : echo "::set-output name=folders::$(python3 .github/scripts/list_changed_folders.py)"
-        run: run : :set-output name=folders::$(python3 .github/scripts/list_changed_folders.py)
+        run : ::set-output name=folders::$(python3 .github/scripts/list_changed_folders.py)
   build_and_publish:
     runs-on: ubuntu-latest
     needs: [check_changes]
