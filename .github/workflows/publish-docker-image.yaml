@@ -21,7 +21,7 @@ jobs:
           fetch-depth: 2
       - name: List changed folders
         id: list
-        run : echo "::set-output name=folders::$(python3 .github/scripts/list_changed_folders.py)
+        run : echo "::set-output name=folders::$(python3 .github/scripts/list_changed_folders.py)"
 
   build_and_publish:
     runs-on: ubuntu-latest
