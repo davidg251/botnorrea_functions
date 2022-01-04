@@ -10,14 +10,26 @@ on:
 
 jobs:
   check_changes:
-    name: List the paths where change were done
+    name: List the functions changed
     runs-on: ubuntu-latest
+    outputs:
+      folders: ${{ steps.list.outputs.folders }}
     steps:
-      
       - name: Check out the repo
         uses: actions/checkout@v2
         with:
           fetch-depth: 2
-
       - name: List changed folders
-        run : python3 .github/scripts/list_changed_folders.py
+        id: list
+        run : echo "::set-output name=folders::$(python3 .github/scripts/list_changed_folders.py)
+
+  build_and_publish:
+    runs-on: ubuntu-latest
+    needs: [check_changes]
+    strategy:
+      matrix:
+        folders_list: ${{ needs.check_changes.outputs.folders }}
+    steps:
+    - name: Build and publish docker images
+      run: echo ${{ matrix.folders_list }} 
+
