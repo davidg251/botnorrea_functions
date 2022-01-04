@@ -28,7 +28,7 @@ jobs:
     needs: [check_changes]
     strategy:
       matrix:
-        folders_list: [] #${{ needs.check_changes.outputs.folders }}
+        folders_list: ['ea', 'ea'] #${{ needs.check_changes.outputs.folders }}
     steps:
     - name: Build and publish docker images
       run: echo ${{ matrix.folders_list }}
