@@ -23,7 +23,7 @@ jobs:
         id: list
         run : echo "::set-output name=folders::$(python3 .github/scripts/list_changed_folders.py)"
   build_and_publish:
-    if: needs.check_changes.outputs.folders == []
+    if: fromJSON(needs.check_changes.outputs.folders)[0] != null
     runs-on: ubuntu-latest
     needs: [check_changes]
     strategy:
