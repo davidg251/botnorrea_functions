@@ -33,12 +33,12 @@ jobs:
     steps:
     - name: Build and publish docker images
       run: |
-        echo $CI_CD_SA_KEY | base64 -d > keyfile.json
+        echo ${secrets.CI_CD_SA_KEY} | base64 -d > keyfile.json
         ls -alh
         node --version
-        #cat keyfile.json | docker login -u _json_key --password-stdin
-        echo 'docker login -u _json_key -p "$(cat keyfile.json)" https://${DOCKER_REGISTRY}'
-        docker login -u _json_key -p "$(cat keyfile.json)" https://${DOCKER_REGISTRY}
+        cat keyfile.json | docker login -u _json_key --password-stdin https://us.gcr.io
+        #echo 'docker login -u _json_key -p "$(cat keyfile.json)" https://${DOCKER_REGISTRY}'
+        #docker login -u _json_key -p "$(cat keyfile.json)" https://${DOCKER_REGISTRY}
         cd ${{ matrix.folders_list }}
         export VERSION=1.0.0
         export PACKAGE_NAME=test
