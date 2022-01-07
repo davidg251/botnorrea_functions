@@ -45,4 +45,4 @@ jobs:
         export PACKAGE_NAME=test
         docker build -t $PACKAGE_NAME .
         docker tag $PACKAGE_NAME us.gcr.io/$PACKAGE_NAME:$VERSION
-        docker push us.gcr.io/${{secrets.PROJECT_NAME}}/$PACKAGE_NAME:$VERSION
+        docker push us.gcr.io/sandboxgdgomez/$PACKAGE_NAME:$VERSION
