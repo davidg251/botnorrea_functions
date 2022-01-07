@@ -24,6 +24,7 @@ jobs:
         run : echo "::set-output name=folders::$(python3 .github/scripts/list_changed_folders.py)"
   build_and_publish:
     if: fromJSON(needs.check_changes.outputs.folders)[0] != null
+    environment: development
     runs-on: ubuntu-latest
     needs: [check_changes]
     strategy:
@@ -31,5 +32,12 @@ jobs:
         folders_list: ${{ fromJSON(needs.check_changes.outputs.folders) }}
     steps:
     - name: Build and publish docker images
-      run: echo ${{ matrix.folders_list }}
-
+      run: |
+        echo $CI_CD_SA_KEY | base64 -d > keyfile.json
+        cat keyfile.json | docker login -u _json_key --password-stdin 
+        cd ${{ matrix.folders_list }}
+        export VERSION=1.0.0
+        export PACKAGE_NAME=test
+        docker build -t ${PACKAGE_NAME} .
+        docker tag ${PACKAGE_NAME} ${DOCKER_REGISTRY}/${PACKAGE_NAME}:${VERSION}
+        docker push ${DOCKER_REGISTRY}/${PROJECT_NAME}/${PACKAGE_NAME}:${VERSION}
