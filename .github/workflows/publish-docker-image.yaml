@@ -44,5 +44,5 @@ jobs:
         export VERSION=1.0.0
         export PACKAGE_NAME=test
         docker build -t $PACKAGE_NAME .
-        docker tag ${PACKAGE_NAME} ${{secrets.DOCKER_REGISTRY}}/${PACKAGE_NAME}:${VERSION}
-        docker push ${{secrets.DOCKER_REGISTRY}}/${{secrets.PROJECT_NAME}}/${PACKAGE_NAME}:${VERSION}
+        docker tag $PACKAGE_NAME us.gcr.io/$PACKAGE_NAME:$VERSION
+        docker push us.gcr.io/${{secrets.PROJECT_NAME}}/$PACKAGE_NAME:$VERSION
