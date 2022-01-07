@@ -7,6 +7,7 @@ on:
       - feature/*
 
 jobs:
+
   check_changes:
     name: List the functions changed
     runs-on: ubuntu-latest
@@ -20,6 +21,7 @@ jobs:
       - name: List changed folders
         id: list
         run : echo "::set-output name=folders::$(python3 .github/scripts/list_changed_folders.py)"
+  
   build_and_publish:
     if: fromJSON(needs.check_changes.outputs.folders)[0] != null
     environment: development
