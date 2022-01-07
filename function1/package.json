@@ -1,0 +1,16 @@
+{
+    "name": "get_images",
+    "version": "2.0.0",
+    "description": "",
+    "main": "main.js",
+    "scripts": {
+        "version" : "node scripts/version.js",
+        "name" : "node scripts/name.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "telegraf": "4.5.2"
+    }
+  }
