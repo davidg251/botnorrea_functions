@@ -38,8 +38,8 @@ jobs:
         echo ${{ secrets.CI_CD_SA_KEY }} | base64 -d > keyfile.json
         cat keyfile.json | docker login -u _json_key --password-stdin https://us.gcr.io
         cd ${{ matrix.folders_list }}
-        export VERSION=1.0.0
-        export PACKAGE_NAME=test
+        export VERSION=$(npm run --silent version)
+        export PACKAGE_NAME=$(npm run --silent name)
         docker build -t $PACKAGE_NAME .
         docker tag $PACKAGE_NAME us.gcr.io/sandboxgdgomez/$PACKAGE_NAME:$VERSION
         docker push us.gcr.io/sandboxgdgomez/$PACKAGE_NAME:$VERSION

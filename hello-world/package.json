@@ -3,7 +3,10 @@
     "version": "1.0.0",
     "description": "",
     "main": "main.js",
-    "scripts": {},
+    "scripts": {
+        "version" : "node scripts/version.js",
+        "name" : "node scripts/name.js"
+    },
     "keywords": [],
     "author": "",
     "license": "ISC",
