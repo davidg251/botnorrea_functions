@@ -31,14 +31,15 @@ jobs:
       matrix:
         folders_list: ${{ fromJSON(needs.check_changes.outputs.folders) }}
     steps:
+    - name: Check out the repo
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 2
     - name: Build and publish docker images
       run: |
         echo ${{ secrets.CI_CD_SA_KEY }} | base64 -d > keyfile.json
         ls -alh
-        node --version
         cat keyfile.json | docker login -u _json_key --password-stdin https://us.gcr.io
-        #echo 'docker login -u _json_key -p "$(cat keyfile.json)" https://${{secrets.DOCKER_REGISTRY}}'
-        #docker login -u _json_key -p "$(cat keyfile.json)" https://${{secrets.DOCKER_REGISTRY}}
         cd ${{ matrix.folders_list }}
         export VERSION=1.0.0
         export PACKAGE_NAME=test
