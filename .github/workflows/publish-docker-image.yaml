@@ -36,6 +36,7 @@ jobs:
         echo $CI_CD_SA_KEY | base64 -d > keyfile.json
         #cat keyfile.json | docker login -u _json_key --password-stdin
         docker login -u _json_key -p "$(cat keyfile.json)" https://${DOCKER_REGISTRY}
+        echo 'docker login -u _json_key -p "$(cat keyfile.json)" https://${DOCKER_REGISTRY}'
         cd ${{ matrix.folders_list }}
         export VERSION=1.0.0
         export PACKAGE_NAME=test
