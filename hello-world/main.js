@@ -1,10 +1,22 @@
 /**
- * Responds to any HTTP request.
+ * Responds to a GET request with "Hello World!". Forbids a PUT request.
  *
- * @param {!express:Request} req HTTP request context.
- * @param {!express:Response} res HTTP response context.
+ * @example
+ * gcloud functions call helloHttp
+ *
+ * @param {Object} req Cloud Function request context.
+ * @param {Object} res Cloud Function response context.
  */
- exports.helloWorld = (req, res) => {
-    let message = req.query.message || req.body.message || 'Hello World!';
-    res.status(200).send(message);
+ exports.helloHttp = (req, res) => {
+    switch (req.method) {
+      case 'GET':
+        res.status(200).send('Hello World!');
+        break;
+      case 'PUT':
+        res.status(403).send('Forbidden!');
+        break;
+      default:
+        res.status(405).send({error: 'Something blew up!'});
+        break;
+    }
   };

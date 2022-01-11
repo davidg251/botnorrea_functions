@@ -3,7 +3,7 @@ import subprocess
 import json
 
 commit_hash   = os.environ['GITHUB_SHA']
-changed_files_command = f'git diff-tree --no-commit-id --name-only -r {commit_hash}'
+changed_files_command = f'git diff-tree=AM --no-commit-id --name-only -r {commit_hash}'
 
 def git_diff_tree():
     return subprocess.run(
